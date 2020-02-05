@@ -1,0 +1,100 @@
+\documentclass[answers]{exam}
+\usepackage{setspace, amsmath, amssymb, tikz}
+\usepackage{multicol}
+
+%\input{../../commands.tex}
+\onehalfspacing
+
+
+\def\duedate{Thursday, February 6}
+
+\begin{document}
+\begin{center}
+{\LARGE \textbf{CS350 : Lab 4} }
+\end{center}
+
+\emph{Completed by Alexander DuPree}
+
+\begin{questions}
+
+\question 
+\textbf{Recurrence Relation Practice:} Solve the following recurrence relations. Do 
+not use the Master method. Show all of your work. 
+\begin{parts}
+\part $T(n)=2T(n-1) + c2^n$
+\begin{solution}
+    let n = 4 in: 
+    \begin{align*}
+        T(4) &= 2T(3) + c2^4 = 2^4k + 2^3c2^1 + 2^2c2^2 + 2c2^3 + c2^4\\
+        T(3) &= 2T(2) + c2^3 = 2^3k + 2^2c2^1 + 2c2^2 + c2^3\\
+        T(2) &= 2T(1) + c2^2 = 2^2k + 2c2^1 + c2^2\\
+        T(1) &= 2T(0) + c2^1 = 2k + c2^1\\
+        T(0) &= k
+    \end{align*}
+    From the emerging pattern we can derive a solution for the recurrence relation:
+    \begin{align*}
+       T(n) &= 2^nk + 2^{n-1}c2^1 + 2^{n-2}c2^2 + \ldots  + 2^1c2^{n-1} + 2^0c2^n\\
+            &= 2^nk + c[2^{n-1}2^1 + 2^{n-2}2^2 + \ldots + 2^12^{n-1} + 2^02^n]\\
+            &= 2^nk + c \cdot \sum_{i=1}^{n}2^n\\
+            &= 2^nk + cn2^n
+    \end{align*}
+    On inspection we can conclude that $T(n) \in O(2^n)$
+\end{solution}
+
+\part $T(n) = 7T(n/2) + cn^2$
+\begin{solution}
+    let $n=2^4$ in:
+    \begin{align*}
+        T(2^4) &= 7T(2^3) + c(2^4)^2 = 7^4k + 7^3c(2^1)^2 + 7^2c(2^2)^2 + 7c(2^3)^2 + c(2^4)^2\\
+        T(2^3) &= 7T(2^2) + c(2^3)^2 = 7^3k + 7^2c(2^1)^2 + 7c(2^2)^2 + c(2^3)^2\\
+        T(2^2) &= 7T(2^1) + c(2^2)^2 = 7^2k + 7c(2^1)^2 + c(2^2)^2\\
+        T(2^1) &= 7T(2^0) + c(2^1)^2 = 7k + c(2^1)^2\\
+        T(2^0) &= k
+    \end{align*}
+    More generally, if we let $n=2^m$ and follow the pattern we can see:
+    \begin{align*}
+        T(2^m) &= 7^mk + 7^{m-1}c4^1 + \ldots + 7^1c4^{m-1} + 7^0c4^m\\
+               &= 7^mk + c[7^{m-1}4^1 + 7^{m-2}4^2 + \ldots + 7^14{m-1} + 7^04^m]\\
+               &= 7^mk + cS \text{\;\;\;, where S = }7^{m-1}4^1 + 7^{m-2}4^2 + \ldots + 7^14{m-1} + 7^04^m
+    \end{align*}
+    If we multiply $S$ by the common ratio $\frac{4}{7}$ and subtract it from $S$ we get:
+    \begin{align*}
+        S - \frac{4}{7}S &= (7^{m-1}4^1 + 7^{m-2}4^2 + \ldots + 7^14{m-1} + 7^04^m) - (7^{m-2}4^2+ 7^{m-3}4^3 + \ldots + 7^04{m} + 7^{-1}4^{m+1})\\
+        \frac{3}{7}S &= 7^{m-1}4 - 7^{-1}4^{m+1}\\
+        3S &= 7^m4 - 4^{m+1}\\
+        S &= \frac{4}{3}(7^m - 4^m)
+    \end{align*}
+    Substituting $n$ back in for $m=lg(n)$ and the closed form solution for $S$ we get:
+    \begin{align*}
+        T(n) &= 7^{lg(n)}k + \frac{4}{3}c(7^{lg(n)} - n^2) \textit{\;\;\;,\;note:\;}4^m = (2^2)^m = (2^m)^2 = n^2\\
+             &= n^{lg(7)}k + \frac{4}{3}cn^{lg(n)} - \frac{4}{3}cn^2
+    \end{align*}
+    Since $2 < lg(7) < 3$ we can conclude $T(n) \in O(n^{lg(7)})$
+\end{solution}
+
+\part $T(n) = 2T(n/2) + n^2$
+\begin{solution}
+    let $n = 2^4$ in:
+    \begin{align*}
+        T(2^4) &= 2T(2^3) + (2^4)^2 = 2^4k + (2^2)^4 + (2^2)^4 + (2^2)^4 + (2^2)^4\\
+        T(2^3) &= 2T(2^2) + (2^3)^2 = 2^3k + (2^2)^3 + (2^2)^3 + (2^2)^3\\
+        T(2^2) &= 2T(2^1) + (2^2)^2 = 2^2k + (2^2)^2 + (2^2)^2 \\
+        T(2^1) &= 2T(2^0) + (2^1)^2 = 2k + (2^2)^1\\
+        T(2^0) &= k
+    \end{align*}
+    More generally, if we let $n=2^m$ and follow the pattern we can see:
+    \begin{align*}
+        T(2^m) &= 2^mk + \sum_{i=1}^{m}(2^m)^2\\
+               &= 2^mk + m(2^m)^2
+    \end{align*}
+    Substituting $n$ back in for $m=lg(n)$ we get:
+    \begin{align*}
+        T(n) &= nk + n^2lg(n)
+    \end{align*}
+    On inspection we can conclude that $T(n) \in O(n^2lg(n))$
+\end{solution}
+\end{parts}
+
+\end{questions}
+
+\end{document}
