@@ -27,9 +27,9 @@
 #define ASCII_CHARS 128
 
 typedef struct __result {
-  unsigned index;
-  unsigned occurences;
-  unsigned comparisons;
+  int index;
+  int occurences;
+  int comparisons;
 } Result;
 
 void init_shift_array(int pSize, const char* pattern, int* shift_width)
@@ -50,6 +50,7 @@ void init_shift_array(int pSize, const char* pattern, int* shift_width)
 
 Result smart_search(int pSize, const char* pattern, int tSize, const char* text)
 {
+  // index is set to -1, indicating failure
   Result results = { -1, 0, 0 };
 
   if(pSize < tSize)
