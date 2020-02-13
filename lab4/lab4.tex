@@ -38,7 +38,7 @@ not use the Master method. Show all of your work.
             &= 2^nk + c \cdot \sum_{i=1}^{n}2^n\\
             &= 2^nk + cn2^n
     \end{align*}
-    On inspection we can conclude that $T(n) \in O(2^n)$
+    On inspection we can conclude that $T(n) \in O(n2^n)$
 \end{solution}
 
 \part $T(n) = 7T(n/2) + cn^2$
@@ -93,6 +93,35 @@ not use the Master method. Show all of your work.
     \end{align*}
     On inspection we can conclude that $T(n) \in O(n^2lg(n))$
 \end{solution}
+
+\part $T(n) = 5T(n/4) + \sqrt{n}$
+\begin{solution}
+    let $n=4^3$ in:
+    \begin{align*}
+        T(4^3) &= 5T(4^2) + \sqrt{4^3} = 5^3k + 5^2\sqrt{4}^1 + 5\sqrt{4}^2 + \sqrt{4}^3\\
+        T(4^2) &= 5T(4^1) + \sqrt{4^2} = 5^2k = 5\sqrt{4} + \sqrt{4}^2\\
+        T(4^1) &= 5T(4^0) + \sqrt{4} = 5k + \sqrt{4}\\
+        T(4^0) &= k
+    \end{align*}
+    More generally, if we let $n=4^m$ and follow the pattern we can see:
+    \begin{align*}
+        T(4^m) &= 5^mk + 5^{m-1}\sqrt{4} + 5^{m-2}\sqrt{4}^2 + \ldots + 5^1\sqrt{4}^m-1 + 5^0\sqrt{4}^m\\
+               &= 5^mk + S \text{\;\;\;\;,\;where\;\;}S = 5^{m-1}2 + 5^{m-2}2^2 + \ldots + 5^12^{m-1} + 5^02^m
+    \end{align*}
+    If we multiply $S$ by the common ratio $\frac{2}{5}$ and subtract it from $S$ we get:
+    \begin{align*}
+        S - \frac{2}{5}S &= (5^{m-1}2 + 5^{m-2}2^2 + \ldots + 5^12^m-1 + 5^02^m) - (5^{m-2}2^2 + 5^{m-3}2^3 + \ldots + 5^02^m + 5^{-1}2^{m+1})\\
+        \frac{3}{5}S &= 5^{m-1}2 - 5^{-1}2^{m+1}\\
+        S &= \frac{2}{3}(5^m - 2^m)
+    \end{align*}
+    Substituting $n$ back in for $m=log_4(n)$ and the closed form solution for $S$ we get:
+    \begin{align*}
+        T(n) &= 5^{log_4(n)}k + \frac{2}{3}5^{log_4(n)}-\frac{2}{3}2^{log_4(n)}\\
+             &= n^{log_4(5)}k + \frac{2}{3}n^{log_4(5)}-\frac{2}{3}n^{log_4(2)}
+    \end{align*}
+    Since $log_4(5) > log_4(2)$ we can conclude that $T(n) \in O(n^{log_4(5)})$
+\end{solution}
+
 \end{parts}
 
 \end{questions}

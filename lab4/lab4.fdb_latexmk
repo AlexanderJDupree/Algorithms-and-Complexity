@@ -1,7 +1,7 @@
 # Fdb version 3
-["pdflatex"] 1580884685 "lab4.tex" "/home/adupree/CS350/lab4/lab4.pdf" "lab4" 1580884686
+["pdflatex"] 1580929729 "lab4.tex" "/home/adupree/CS350/lab4/lab4.pdf" "lab4" 1580929729
   "/etc/texmf/web2c/texmf.cnf" 1579159242 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/adupree/CS350/lab4/lab4.aux" 1580884686 672 fcb0565c13e363d7b7a0cf43c6990c78 ""
+  "/home/adupree/CS350/lab4/lab4.aux" 1580929729 751 e3a72302a3cda884b91b3735a63d0d30 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1511824771 3332 103109f5612ad95229751940c61aada0 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm" 1246382020 916 f87d7c45f9c908e672703b83b72241a3 ""
@@ -21,6 +21,7 @@
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb" 1248133631 36299 5f9df58c2139e7edcf37c8fca4bd384d ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb" 1248133631 36281 c355509802a035cadc5f15869451dcee ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1248133631 35752 024fb6c41858982481f6968b5fc26508 ""
+  "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb" 1248133631 31809 8670ca339bf94e56da1fc21c80635e2a ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb" 1248133631 32762 224316ccc9ad3ca0423a14971cfa7fc1 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1248133631 32569 5e5ddc8df908dea60932f3c484a54c0d ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb" 1248133631 32716 08e384dc442464e7285e891af9f45947 ""
@@ -129,11 +130,11 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1562720991 35073 2a40cfca74fcd5e2568b569ccaadf3f1 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1579159287 4549418 4593509275c90822931a1b14bc17851e ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1579159305 4263086 e225cf53774c1e4237986e46190165bc ""
-  "lab4.aux" 1580884686 672 fcb0565c13e363d7b7a0cf43c6990c78 "pdflatex"
-  "lab4.tex" 1580884685 3680 a02b984c5d87d0025d2ead5216b762a0 ""
+  "lab4.aux" 1580929729 751 e3a72302a3cda884b91b3735a63d0d30 "pdflatex"
+  "lab4.tex" 1580929729 5097 371a141ffd8bf8cf0c792877d1ca6a15 ""
   (generated)
-  "lab4.aux"
+  "lab4.pdf"
   "lab4.log"
   "/home/adupree/CS350/lab4/lab4.log"
-  "lab4.pdf"
   "/home/adupree/CS350/lab4/lab4.pdf"
+  "lab4.aux"
