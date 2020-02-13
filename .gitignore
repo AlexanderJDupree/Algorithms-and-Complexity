@@ -1,0 +1,7 @@
+.vscode/
+lab3/nums.txt
+*.aux
+*.fdb_latexmk
+*.log
+*.synctex.gz
+
