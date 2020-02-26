@@ -9,7 +9,7 @@
 #include <string.h>
 
 #define DENOMINATIONS 3
-#define REJECT_PATH 0xFFFF
+#define INT_MAX ~0U >> 1
 
 typedef enum {
     PENNY  = 1,
@@ -30,7 +30,7 @@ int minimum(int* vals, int n)
 int __num_coins_recursive(int n)
 {
     if(n == 0) { return 0; }
-    if(n < 0) { return REJECT_PATH; }
+    if(n < 0) { return ~0U >> 1; }
 
     int vals[DENOMINATIONS] = { __num_coins_recursive(n - PENNY)
                               , __num_coins_recursive(n - TRIPLE)
@@ -71,7 +71,7 @@ void init_table()
 int num_coins(int n)
 {
     if(n == 0) { return 0; }
-    if(n < 0) { return REJECT_PATH; }
+    if(n < 0) { return ~0U >> 1; }
     if(TABLE[n] == -1)
     {
 
@@ -90,7 +90,10 @@ int num_coins(int n)
 int num_coins(int n)
 {
     if(n == 0){ return 0; }
-    if(n < 0) { return REJECT_PATH; }
+    
+    // ~0U is unsigned practical infinity, shift right 1 for two's complement
+    if(n < 0) { return ~0U >> 1; }
+
     if(TABLE[n] == -1)
     {
         for (int i = QUIN; i <= n; ++i)
@@ -102,7 +105,6 @@ int num_coins(int n)
     }
     return TABLE[n];
 }
-
 
 #else
 
