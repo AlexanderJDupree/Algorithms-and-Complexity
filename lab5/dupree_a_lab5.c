@@ -66,7 +66,7 @@ Result smart_search(int pSize, const char* pattern, int tSize, const char* text)
       if(text[i] != pattern[pIndex]) // Reject substring
       {
         // Move Start Marker right based on index value of char
-        SM += shift_width[(int) text[i]];
+        SM += shift_width[(int) text[SM]];
 
         // Reset indices
         pIndex = pSize - 1; 
