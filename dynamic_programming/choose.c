@@ -68,6 +68,9 @@ unsigned min(unsigned a, unsigned b)
 
 unsigned long choose(int n, int k)
 {
+/* Time: O(n*k), iterate up to k elements in each row n times
+   Space: O(n*k), 2D array of size n*k is used to tabulate the results
+*/
     if(k > n) { return 0; }
 
     TABLE[0][0] = 1;
