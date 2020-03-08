@@ -98,9 +98,12 @@ int num_coins(int n)
     {
         for (int i = QUIN; i <= n; ++i)
         {
-            TABLE[i] = 1 + TABLE[i - PENNY];
-            TABLE[i] = 1 + TABLE[i - TRIPLE];
-            TABLE[i] = 1 + TABLE[i - QUIN];
+
+            int vals[DENOMINATIONS] = { TABLE[i - QUIN]
+                                      , TABLE[i - TRIPLE]
+                                      , TABLE[i - PENNY]
+                                      };
+            TABLE[i] =  1 + minimum(vals, DENOMINATIONS);
         }
     }
     return TABLE[n];
