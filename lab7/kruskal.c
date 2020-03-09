@@ -1,5 +1,5 @@
 
-// YOUR NAME:
+// YOUR NAME: Alexander DuPree
 
 // Kruskal's Algorithm Lab
 
@@ -108,6 +108,51 @@ int compare (const void *p1,  const void *p2)
   }
 }
 
+void merge(Edge* list, int lo, int mid, int hi)
+{
+  int i = 0;
+  Edge temp[hi - lo + 1];
+
+  int lf = lo;
+  int rf = mid + 1;
+  while(lf <= mid && rf <= hi)
+  {
+    temp[i++] = compare(&list[lf], &list[rf]) < 0 ? list[lf++] : list[rf++];
+  }
+
+  // Merge the rest, Only one of these while loops will execute
+  while(lf <= mid)
+  {
+    temp[i++] = list[lf++];
+  }
+  while(rf <= hi)
+  {
+    temp[i++] = list[rf++];
+  }
+
+  // Copy back into ara
+  for(--i; hi >= lo; --hi)
+  {
+    list[hi] = temp[i--];
+  }
+  return;
+}
+
+void merge_sort(Edge* list, int lo, int hi)
+{
+  if(lo >= hi)
+  {
+    return;
+  }
+
+  int mid = (lo + hi) / 2;
+
+  merge_sort(list, lo, mid);
+  merge_sort(list, mid + 1, hi);
+
+  merge(list, lo, mid, hi);
+}
+
 
 
 int  print_edge_list(Edge *elist, int N)
@@ -130,7 +175,22 @@ int print_array(int *x, int n)
   }  
 }
 
+int find(int* disjoint, int i)
+{
+  if(disjoint[i] == -1)
+    return i;
+  
+  return find(disjoint, disjoint[i]);
+}
 
+void set_union(int* disjoint_set, int s1, int s2)
+{
+  int s1_root = find(disjoint_set, s1);
+  int s2_root = find(disjoint_set, s2);
+
+  if(s1_root != s2_root)
+    disjoint_set[s1_root] = s2_root;
+}
 
 int kruskal()
 {
@@ -155,10 +215,10 @@ int kruskal()
   for (r = 0 ; r < N ; r++) {
     for (c = r+1 ; c < N ; c++) {
       if (A[r][c] != -1) {
-	elist[e].vstart = r ; // start vertex of edge
-	elist[e].vend = c ; // end vertex of edge
-	elist[e].vlen = A[r][c] ;
-	e++ ;
+        elist[e].vstart = r ; // start vertex of edge
+        elist[e].vend = c ; // end vertex of edge
+        elist[e].vlen = A[r][c] ;
+        e++ ;
       }
     }
   }
@@ -174,8 +234,34 @@ int kruskal()
   //  Note:  this function should call print_edge_list() at the 
   //         end to give the edges in a minimum spanning tree
 
+  merge_sort(elist, 0, e - 1);
+
+  int edge_index = 0;
+  Edge mst[N]; // Minimum Spanning Tree
+
+  int disjoint_set[N-1];
+  for(int i = 0; i < N; ++i)
+  { // Init disjoint set array
+    disjoint_set[i] = -1;
+  }
+
+  for(int i = 0; edge_index < N-1 && i < e; ++i)
+  {
+    int s1 = find(disjoint_set, elist[i].vstart);
+    int s2 = find(disjoint_set, elist[i].vend);
+
+    if(s1 != s2) // No cycle detected
+    {
+      mst[edge_index++] = elist[i];
+      set_union(disjoint_set, s1, s2);
+    }
+    // Cycle detected, discard Edge
+  }
+
+  printf("\n\nResulting Minimum Spanning Tree:\n");
+  print_edge_list(mst, N-1);
   
-  
+  return 0;
 }
 
 
